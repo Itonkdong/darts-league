@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  # MongoDB Database
+  mongodb:
+    image: mongo:latest
+    container_name: dart-mongodb
+    restart: unless-stopped
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_INITDB_DATABASE=darts_league
+    volumes:
+      - mongodb_data:/data/db
+    ports:
+      - "27018:27017"
+    networks:
+      - dart-network
+
+  # Spring Boot Backend
+  backend:
+    build:
+      context: ./backend-spring
+      dockerfile: Dockerfile
+    container_name: dart-backend
+    restart: unless-stopped
+    depends_on:
+      - mongodb
+    environment:
+      - SPRING_DATA_MONGODB_HOST=mongodb
+      - SPRING_DATA_MONGODB_PORT=27017
+      - SPRING_DATA_MONGODB_DATABASE=darts_league
+      - FILE_UPLOAD-DIR=/app/uploads
+    volumes:
+      - uploads_data:/app/uploads
+    ports:
+      - "8080:8080"
+    networks:
+      - dart-network
+
+  # React Frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: dart-frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "80:80"
+    networks:
+      - dart-network
+
+networks:
+  dart-network:
+    driver: bridge
+
+volumes:
+  mongodb_data:
+  uploads_data:

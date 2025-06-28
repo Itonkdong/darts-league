@@ -1,0 +1,1 @@
+docker cp .\src\main\resources\uploads\player_photos\viktor.png dart-backend:/app/uploads/player_photos/
