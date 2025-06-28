@@ -29,7 +29,7 @@ services:
       - SPRING_DATA_MONGODB_HOST=mongodb
       - SPRING_DATA_MONGODB_PORT=27017
       - SPRING_DATA_MONGODB_DATABASE=darts_league
-      - FILE_UPLOAD-DIR=/app/uploads
+      - FILE_UPLOAD_DIR=/app/uploads
     volumes:
       - uploads_data:/app/uploads
     ports:
