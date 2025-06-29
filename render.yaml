@@ -1,0 +1,32 @@
+services:
+  # Backend API service
+  - type: web
+    name: darts-league-backend
+    env: docker
+    dockerfilePath: ./backend-spring/Dockerfile
+    dockerContext: ./backend-spring
+    plan: standard
+    envVars:
+      - key: SPRING_DATA_MONGODB_URI
+        sync: false # This will be set manually with MongoDB Atlas URI
+      - key: SPRING_DATA_MONGODB_DATABASE
+        value: darts_league
+      - key: FILE_UPLOAD_DIR
+        value: /data/uploads
+    disk:
+      name: uploads
+      mountPath: /data/uploads
+      sizeGB: 1
+
+  # Frontend static site
+  - type: web
+    name: darts-league-frontend
+    env: docker
+    dockerfilePath: ./frontend/Dockerfile
+    dockerContext: ./frontend
+    plan: free
+    buildCommand: npm run build
+    staticPublishPath: ./dist
+    envVars:
+      - key: VITE_API_URL
+        value: https://darts-league-backend.onrender.com/api/

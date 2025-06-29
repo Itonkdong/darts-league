@@ -1,6 +1,12 @@
 import axios from 'axios';
 
+// Get the API URL from environment or use default
+const API_URL = import.meta.env.VITE_API_URL || '/api/';
+
 export default axios.create({
-    // baseURL: 'http://localhost:8080/api/', // Direct backend access
-    baseURL: '/api/', // Use relative path for Docker and Kubernetes Ingress routing
+    // Deployment options:
+    // Local development: 'http://localhost:8080/api/'
+    // Docker/Kubernetes: '/api/'
+    // Render.com: The full URL from VITE_API_URL environment variable
+    baseURL: API_URL,
 });
