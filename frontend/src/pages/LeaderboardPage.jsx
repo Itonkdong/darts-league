@@ -35,8 +35,8 @@ const LeaderboardPage = () =>
     {
         // Default image if no photo available
         const photoUrl = player.photoPath
-            ? `http://localhost:8080${player.photoPath}`
-            : `http://localhost:8080/uploads/player_photos/delfina.png`;
+            ? `${player.photoPath}`
+            : `/uploads/player_photos/delfina.png`;
 
         return (
             <div className={`player-card ${rank <= 3 ? `rank-${rank}` : ''}`} key={player.id}>

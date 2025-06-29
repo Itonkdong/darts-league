@@ -118,7 +118,7 @@ const GameCard = ({game, players}) =>
 
             <div className="game-card-content">
                 <img
-                    src={winnerPhotoPath ? `http://localhost:8080${winnerPhotoPath}` : "https://www.it-labs.com/wp-content/uploads/2020/09/fb.jpg"}
+                    src={winnerPhotoPath ? `${winnerPhotoPath}` : "https://www.it-labs.com/wp-content/uploads/2020/09/fb.jpg"}
                     alt="Winner"
                     className="winner-photo"
                 />

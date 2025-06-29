@@ -31,6 +31,10 @@ COPY --from=build /app/target/*.jar app.jar
 RUN mkdir -p /app/uploads/winner_photos
 RUN mkdir -p /app/uploads/player_photos
 
+# Copy starter photos
+COPY --from=build /app/src/main/resources/init/spring-init/player_photos/*.png /app/uploads/player_photos/
+COPY --from=build /app/src/main/resources/init/spring-init/winner_photos/*.png /app/uploads/winner_photos/
+
 # Set the upload directory as a volume
 VOLUME /app/uploads
 

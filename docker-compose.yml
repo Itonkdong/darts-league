@@ -11,11 +11,11 @@ services:
       - MONGO_INITDB_DATABASE=darts_league
     volumes:
       - mongodb_data:/data/db
+      - ./backend-spring/src/main/resources/init/mongo-init:/docker-entrypoint-initdb.d
     ports:
       - "27018:27017"
     networks:
       - dart-network
-
   # Spring Boot Backend
   backend:
     build:
@@ -47,7 +47,7 @@ services:
     depends_on:
       - backend
     ports:
-      - "80:80"
+      - "81:80"
     networks:
       - dart-network
 
