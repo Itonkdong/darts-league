@@ -38,7 +38,7 @@ spec:
     spec:
       initContainers:
         - name: copy-initial-photos
-          image: itonkdong/darts-league-backend:latest
+          image: itonkdong/darts-league-backend:no-cd
           command:
             - sh
             - -c
@@ -75,7 +75,7 @@ spec:
               mountPath: /data
       containers:
       - name: backend
-        image: itonkdong/darts-league-backend:latest
+        image: itonkdong/darts-league-backend:no-cd
         ports:
         - containerPort: 8080
         envFrom:

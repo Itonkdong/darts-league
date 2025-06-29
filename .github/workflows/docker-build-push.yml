@@ -2,9 +2,7 @@ name: Docker Build and Push
 
 on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    branches: [ no-cd ]
 
 jobs:
   build-and-push:
@@ -34,11 +32,11 @@ jobs:
       with:
         context: ./backend-spring
         push: ${{ github.event_name != 'pull_request' }}
-        tags: ${{ secrets.DOCKER_HUB_USERNAME }}/darts-league-backend:latest
+        tags: ${{ secrets.DOCKER_HUB_USERNAME }}/darts-league-backend:no-cd
 
     - name: Build and push frontend image
       uses: docker/build-push-action@v4
       with:
         context: ./frontend
         push: ${{ github.event_name != 'pull_request' }}
-        tags: ${{ secrets.DOCKER_HUB_USERNAME }}/darts-league-frontend:latest
+        tags: ${{ secrets.DOCKER_HUB_USERNAME }}/darts-league-frontend:no-cd

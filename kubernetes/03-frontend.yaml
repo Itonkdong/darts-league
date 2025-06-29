@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: itonkdong/darts-league-frontend:latest
+        image: itonkdong/darts-league-frontend:no-cd
         ports:
         - containerPort: 80
 ---
