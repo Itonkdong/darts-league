@@ -36,6 +36,32 @@ spec:
       labels:
         app: backend
     spec:
+      initContainers:
+        - name: copy-initial-photos
+          image: itonkdong/darts-league-backend:latest
+          command:
+            - sh
+            - -c
+            - |
+              echo "Creating directory structure..."
+              mkdir -p /data/player_photos
+              mkdir -p /data/winner_photos
+              
+              # Copy photos
+              echo "Copying photos..."
+              cp -v /app/uploads/player_photos/* /data/player_photos/ 2>/dev/null || echo "Not found at path 3"
+              cp -v /app/uploads/winner_photos/* /data/winner_photos/ 2>/dev/null || echo "Not found at path 3"
+              
+              # Check where the files in the image actually are by searching recursively
+              echo "Searching for image files recursively..."
+              find /app -name "*.png" | grep -E 'player_photos|winner_photos' 2>/dev/null || echo "No image files found"
+              
+              echo "Copied files to destination:"
+              ls -la /data/player_photos/
+              ls -la /data/winner_photos/
+          volumeMounts:
+            - name: uploads-data
+              mountPath: /data
       containers:
       - name: backend
         image: itonkdong/darts-league-backend:latest
