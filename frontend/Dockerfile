@@ -23,9 +23,6 @@ COPY --from=build /app/dist /usr/share/nginx/html
 # Copy nginx configuration template
 COPY nginx.conf /etc/nginx/templates/default.conf.template
 
-# Set environment variables with defaults
-ENV BACKEND_API_URL=http://localhost:8080
-
 EXPOSE 80
 
 CMD ["nginx", "-g", "daemon off;"]

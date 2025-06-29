@@ -3,6 +3,7 @@ import '../styles/GameCard.css';
 import {getPlayerMap} from '../utils.js';
 import {useNavigate} from 'react-router-dom';
 import {useDartContext} from '../context/DartContext';
+import {imgPath} from "../api.js";
 
 const GameCard = ({game, players}) =>
 {
@@ -118,7 +119,7 @@ const GameCard = ({game, players}) =>
 
             <div className="game-card-content">
                 <img
-                    src={winnerPhotoPath ? `"https://darts-league-backend-nodj.onrender.com"${winnerPhotoPath}` : "https://www.it-labs.com/wp-content/uploads/2020/09/fb.jpg"}
+                    src={winnerPhotoPath ? `${imgPath}${winnerPhotoPath}` : "https://www.it-labs.com/wp-content/uploads/2020/09/fb.jpg"}
                     alt="Winner"
                     className="winner-photo"
                 />

@@ -59,18 +59,19 @@ Make sure to set up your local DNS (e.g. in `/etc/hosts`) to point `darts-league
 
 ---
 
-## CI/CD Pipeline
+## Deployment on Render.com
 
-* Automated with **GitHub Actions**
-* On every push to `master`:
+The application is deployed and accessible on Render.com:
 
-  * Builds backend & frontend Docker images
-  * Pushes images to Docker Hub:
+* **Frontend**: [https://darts-league-frontend-8gzd.onrender.com](https://darts-league-frontend-8gzd.onrender.com)
+* **Backend API**: [https://darts-league-backend-nodj.onrender.com](https://darts-league-backend-nodj.onrender.com)
 
-    * `itonkdong/darts-league-backend:latest`
-    * `itonkdong/darts-league-frontend:latest`
+The deployment uses:
+* Free-tier Render Web Services for both frontend and backend
+* MongoDB Atlas for database
+* GitHub Actions CI/CD pipeline that automatically deploys on push to master
+* Environment variables for configuration and secrets management
 
----
 
 ## Project Structure
 

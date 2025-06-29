@@ -12,10 +12,10 @@ services:
       - key: SPRING_DATA_MONGODB_DATABASE
         value: darts_league
       - key: FILE_UPLOAD_DIR
-        value: /data/uploads
+        value: /app/uploads
     disk:
       name: uploads
-      mountPath: /data/uploads
+      mountPath: /app/uploads
       sizeGB: 1
 
   # Frontend static site
@@ -29,4 +29,4 @@ services:
     staticPublishPath: ./dist
     envVars:
       - key: VITE_API_URL
-        value: https://darts-league-backend.onrender.com/api/
+        value: https://darts-league-backend-nodj.onrender.com/api/
