@@ -100,7 +100,7 @@ darts-league/
 
 ## License & Credits
 
-This project was developed by Viktor Kostadinoski as a fun internal tool and as part of the course Continuous Integration and Delivery (DevOps). Teacher were Panche Ribarski and Stefan Andonov.
+This project was developed by Viktor Kostadinoski as a fun internal tool and as part of the course Continuous Integration and Delivery (DevOps). The course instructors were Panche Ribarski and Stefan Andonov.
 
 ---
 
