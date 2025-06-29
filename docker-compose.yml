@@ -9,6 +9,8 @@ services:
     environment:
       - MONGO_DATA_DIR=/data/db
       - MONGO_INITDB_DATABASE=darts_league
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=finki
     volumes:
       - mongodb_data:/data/db
       - ./backend-spring/src/main/resources/init/mongo-init:/docker-entrypoint-initdb.d
@@ -29,6 +31,9 @@ services:
       - SPRING_DATA_MONGODB_HOST=mongodb
       - SPRING_DATA_MONGODB_PORT=27017
       - SPRING_DATA_MONGODB_DATABASE=darts_league
+      - SPRING_DATA_MONGODB_USERNAME=admin
+      - SPRING_DATA_MONGODB_PASSWORD=finki
+      - SPRING_DATA_MONGODB_AUTHENTICATION_DATABASE=admin
       - FILE_UPLOAD_DIR=/app/uploads
     volumes:
       - uploads_data:/app/uploads

@@ -107,6 +107,17 @@ data:
     print("Database initialization completed successfully!");
 ---
 apiVersion: v1
+kind: Secret
+metadata:
+  name: mongodb-secret
+  namespace: darts-league
+type: Opaque
+stringData:
+  username: admin
+  password: finki
+  authenticationDatabase: admin
+---
+apiVersion: v1
 kind: Service
 metadata:
   name: mongodb
@@ -147,6 +158,16 @@ spec:
         env:
         - name: MONGO_INITDB_DATABASE
           value: darts_league
+        - name: MONGO_INITDB_ROOT_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: mongodb-secret
+              key: username
+        - name: MONGO_INITDB_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mongodb-secret
+              key: password
         volumeMounts:
         - name: mongodb-data
           mountPath: /data/db
@@ -164,4 +185,3 @@ spec:
       resources:
         requests:
           storage: 1Gi
-

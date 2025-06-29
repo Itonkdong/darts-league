@@ -47,8 +47,19 @@ spec:
               mkdir -p /data/player_photos
               mkdir -p /data/winner_photos
               
-              # Copy photos
-              echo "Copying photos..."
+              echo "Checking image resources path..."
+              ls -la /app/src/main/resources/init/spring-init/ 2>/dev/null || echo "Path not found"
+              
+              echo "Trying to copy from different possible locations..."
+              # Try copying from resources directory path
+              cp -v /app/src/main/resources/init/spring-init/player_photos/* /data/player_photos/ 2>/dev/null || echo "Not found at path 1"
+              cp -v /app/src/main/resources/init/spring-init/winner_photos/* /data/winner_photos/ 2>/dev/null || echo "Not found at path 1"
+              
+              # Try another possible path
+              cp -v /app/resources/init/spring-init/player_photos/* /data/player_photos/ 2>/dev/null || echo "Not found at path 2"
+              cp -v /app/resources/init/spring-init/winner_photos/* /data/winner_photos/ 2>/dev/null || echo "Not found at path 2"
+              
+              # Try direct path
               cp -v /app/uploads/player_photos/* /data/player_photos/ 2>/dev/null || echo "Not found at path 3"
               cp -v /app/uploads/winner_photos/* /data/winner_photos/ 2>/dev/null || echo "Not found at path 3"
               
@@ -70,6 +81,22 @@ spec:
         envFrom:
         - configMapRef:
             name: backend-config
+        env:
+        - name: SPRING_DATA_MONGODB_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: mongodb-secret
+              key: username
+        - name: SPRING_DATA_MONGODB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mongodb-secret
+              key: password
+        - name: SPRING_DATA_MONGODB_AUTHENTICATION_DATABASE
+          valueFrom:
+            secretKeyRef:
+              name: mongodb-secret
+              key: authenticationDatabase
         volumeMounts:
         - name: uploads-data
           mountPath: /app/uploads
