@@ -41,7 +41,6 @@ services:
       - "8080:8080"
     networks:
       - dart-network
-
   # React Frontend
   frontend:
     build:
@@ -52,7 +51,7 @@ services:
     depends_on:
       - backend
     ports:
-      - "81:80"
+      - "80:80"
     networks:
       - dart-network
 

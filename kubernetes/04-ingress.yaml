@@ -7,7 +7,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: darts-league.local # You can adjust this to your preferred domain
+  - host: darts-league.local
     http:
       paths:
       - path: /api
@@ -31,3 +31,5 @@ spec:
             name: frontend
             port:
               number: 80
+
+
