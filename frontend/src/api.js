@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Get the API URL from environment or use default
 // Note: If using the full URL from Render.com, we don't need to append '/api/' as it's already included
-const API_URL = import.meta.env.VITE_API_URL || '/api/';
+const API_URL = "https://darts-league-backend-nodj.onrender.com/api/";
 
 export default axios.create({
     // Deployment options:
